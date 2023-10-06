@@ -1,13 +1,23 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import S from './App.module.scss';
 import { BsSearch } from 'react-icons/bs';
 import MovieCard from './Components/MovieCard';
 import { Pagination } from '@mui/material';
-// import { useGetMoviesAllQuery } from './Redux/fetchData';
+import { setPageFetch } from './Redux/fetchDataSlice';
 
 function App() {
-  // const { data = [] } = useGetMoviesAllQuery();
+  const dispatch = useDispatch();
+  const [page, setPage] = React.useState(1);
 
-  // console.log(data.docs[0].id);
+  const handleChange = (event, value) => {
+    dispatch(setPageFetch(value));
+    setPage(value);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <div>
@@ -20,16 +30,13 @@ function App() {
           <BsSearch className={S.svg} />
         </div>
         <button type="button">Поиск</button>
-        {/* <div> */}
-        {/* {data.docs.map((el) => (
-            <h1 key={el.id}>{el.id}</h1>
-          ))} */}
-        {/* </div> */}
       </div>
       <MovieCard />
       <div className={S.pagination}>
         <Pagination
-          color="primary"
+          page={page}
+          onChange={handleChange}
+          color="secondary"
           count={1038604}
         />
       </div>

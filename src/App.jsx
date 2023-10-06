@@ -1,6 +1,7 @@
 import S from './App.module.scss';
 import { BsSearch } from 'react-icons/bs';
 import MovieCard from './Components/MovieCard';
+import { Pagination } from '@mui/material';
 // import { useGetMoviesAllQuery } from './Redux/fetchData';
 
 function App() {
@@ -26,6 +27,12 @@ function App() {
         {/* </div> */}
       </div>
       <MovieCard />
+      <div className={S.pagination}>
+        <Pagination
+          color="primary"
+          count={1038604}
+        />
+      </div>
     </div>
   );
 }

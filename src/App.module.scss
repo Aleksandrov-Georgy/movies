@@ -1,7 +1,6 @@
 * {
   padding: 0;
   margin: 0;
-  background-color: black;
   font-family: 'Montserrat', sans-serif;
   font-family: 'Rubik', sans-serif;
 }
@@ -13,6 +12,10 @@ body {
   width: 100%;
   height: 100%;
   z-index: 0;
+  background: #5f2c82;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #49a09d, #5f2c82);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #49a09d, #5f2c82); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -135,4 +138,7 @@ body {
     border-radius: 8px;
     color: black;
   }
+}
+.pagination {
+  margin-left: calc(50% - 13%)
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import S from './App.module.scss';
-import { BsSearch } from 'react-icons/bs';
 import MovieCard from './Components/MovieCard';
-import { Pagination } from '@mui/material';
+import { Container, Pagination } from '@mui/material';
 import { setPageFetch } from './Redux/fetchDataSlice';
+import Search from './Components/SearchBlock';
 
 function App() {
   const dispatch = useDispatch();
@@ -20,16 +20,10 @@ function App() {
   };
 
   return (
-    <div>
+    <Container>
       <div className={S.header}>
-        <div className={S.search}>
-          <input
-            type="text"
-            placeholder="Фильмы и сериалы"
-          />
-          <BsSearch className={S.svg} />
-        </div>
-        <button type="button">Поиск</button>
+        <Search />
+        
       </div>
       <MovieCard />
       <div className={S.pagination}>
@@ -40,7 +34,7 @@ function App() {
           count={1038604}
         />
       </div>
-    </div>
+    </Container>
   );
 }
 

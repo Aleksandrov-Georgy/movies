@@ -19,8 +19,6 @@ export const fetchData = createApi({
       query: (page) => `/v1.3/movie?limit=20&page=${page}`,
       providesTags: ['movies'],
     }),
-    
-    
   }),
 });
 

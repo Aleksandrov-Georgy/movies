@@ -1,6 +1,6 @@
 import S from './movie.module.scss';
 import { useGetMoviesAllQuery } from '../../Redux/fetchData';
-import { Skeleton } from '@mui/material';
+import { Box, Button, Grid, Paper, Rating, Skeleton, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 const MovieCard = () => {
@@ -9,36 +9,72 @@ const MovieCard = () => {
   const { data = [], isLoading } = useGetMoviesAllQuery(page);
 
   return (
-    <div className={S.movies}>
+    <Grid
+      container
+      spacing={2}>
       {!isLoading
         ? data.docs?.map((movie) => (
-            <div
+            <Grid
+              item
               key={movie.id}
-              className={S.movie}>
-              <div className={S.imageBlock}>
-                <img
-                  src={movie.poster.previewUrl}
-                  alt="preview"
-                />
-              </div>
-              <div className={S.contentBlock}>
-                <h3>{movie.name}</h3>
-                <p>Рейтинг: {movie.rating.imdb}</p>
-              </div>
-              <button>Информация о фильме</button>
-            </div>
+              xs={3}>
+              <Paper
+                elevation={16}
+                sx={{ borderRadius: '10px' }}
+                key={movie.id}
+                className={S.movie}>
+                <div className={S.imageBlock}>
+                  <img
+                    src={movie.poster.previewUrl}
+                    alt="preview"
+                  />
+                </div>
+                <Box
+                  padding={1}
+                  sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                  <Typography
+                    variant="h6"
+                    component="h6">
+                    {movie.name}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    component="h6">
+                    Рейтинг
+                  </Typography>
+                  <Rating
+                    readOnly
+                    max={10}
+                    precision={0.1}
+                    defaultValue={movie.rating.imdb}
+                  />
+                  <Typography
+                    variant="caption"
+                    component="h6">
+                    {movie.rating.imdb}
+                  </Typography>
+                </Box>
+                <Button variant="outlined">Информация о фильме</Button>
+              </Paper>
+            </Grid>
           ))
         : Array(20)
             .fill()
             .map(() => (
-              <Skeleton
-                key={Math.random()}
-                variant="rounded"
-                width={'93%'}
-                height={410}
-              />
+              <Grid
+                item
+                xs={3}
+                sx={{ marginBottom: '20px' }}
+                key={Math.random()}>
+                <Skeleton
+                  key={Math.random()}
+                  variant="rounded"
+                  height={450}
+                  width={270}
+                />
+              </Grid>
             ))}
-    </div>
+    </Grid>
   );
 };
 

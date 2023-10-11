@@ -19,7 +19,12 @@ export const fetchData = createApi({
       query: (page) => `/v1.3/movie?limit=20&page=${page}`,
       providesTags: ['movies'],
     }),
+    getMoviesId: build.query({
+      query: (id) => `/v1.3/movie/${id}`,
+      providesTags: ['movies'],
+    }),
   }),
+
 });
 
-export const { useGetMoviesAllQuery } = fetchData;
+export const { useGetMoviesAllQuery, useGetMoviesIdQuery } = fetchData;

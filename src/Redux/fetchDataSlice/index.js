@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loadingMovie: false,
   page: 1,
+  selectedMovieId: '',
 };
 
 export const loadingMovies = createSlice({
@@ -15,9 +16,12 @@ export const loadingMovies = createSlice({
     setPageFetch: (state, action) => {
       state.page = action.payload;
     },
+    setMoviesID: (state, action) => {
+      state.selectedMovieId = action.payload;
+    },
   },
 });
 
-export const { setLoading, setPageFetch } = loadingMovies.actions;
+export const { setLoading, setPageFetch, setMoviesID } = loadingMovies.actions;
 
 export default loadingMovies.reducer;

@@ -1,0 +1,148 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Rubik', sans-serif;
+}
+
+// body {
+//   padding: 0;
+//   margin: 0;
+//   border: 0;
+//   width: 100%;
+//   height: 100%;
+//   z-index: 0;
+//   background: #5f2c82; /* fallback for old browsers */
+//   background: -webkit-linear-gradient(to right, #49a09d, #5f2c82); /* Chrome 10-25, Safari 5.1-6 */
+//   background: linear-gradient(
+//     to right,
+//     #49a09d,
+//     #5f2c82
+//   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+//   input::-webkit-outer-spin-button,
+//   input::-webkit-inner-spin-button {
+//     /* display: none; <- Crashes Chrome on hover */
+//     -webkit-appearance: none;
+//     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+//   }
+
+//   *,
+//   *:before,
+//   *:after {
+//     -moz-box-sizing: border-box;
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//   }
+
+//   :focus,
+//   :active {
+//     outline: none;
+//   }
+//   a:focus,
+//   a:active {
+//     outline: none;
+//   }
+
+//   nav,
+//   footer,
+//   header,
+//   aside {
+//     display: block;
+//   }
+
+//   html,
+//   body {
+//     width: 100%;
+//     height: 100%;
+//     font-size: 100%;
+//     line-height: 1;
+//     font-size: 14px;
+//     -ms-text-size-adjust: 100%;
+//     -moz-text-size-adjust: 100%;
+//     -webkit-text-size-adjust: 100%;
+//     scroll-behavior: smooth;
+//   }
+
+//   input,
+//   button,
+//   textarea {
+//     font-family: inherit;
+//   }
+
+//   button {
+//     cursor: pointer;
+//   }
+//   button::-moz-focus-inner {
+//     padding: 0;
+//     border: 0;
+//   }
+//   a,
+//   a:visited {
+//     text-decoration: none;
+//     color: inherit;
+//   }
+//   ul li {
+//     list-style: none;
+//   }
+//   img {
+//     vertical-align: top;
+//   }
+
+//   h1,
+//   h2,
+//   h3,
+//   h4,
+//   h5,
+//   h6 {
+//     font-size: inherit;
+//     font-weight: 400;
+//   }
+// }
+
+// body {
+//   width: 90%;
+//   margin: 0 auto;
+// }
+
+.header {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+
+  .search {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    position: relative;
+
+    // input {
+    //   background-color: transparent;
+    //   border: none;
+    //   width: 95%;
+    // }
+
+    // .svg {
+    //   background: transparent;
+    //   color: black;
+    //   position: absolute;
+    //   right: 10px;
+    // }
+  }
+  button {
+    width: 10%;
+    background-color: #fff;
+    border-radius: 8px;
+    color: black;
+  }
+}
+.pagination {
+  margin-left: calc(50% - 13%);
+  margin-bottom: 20px;
+}

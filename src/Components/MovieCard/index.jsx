@@ -10,7 +10,11 @@ const MovieCard = () => {
   const navigate = useNavigate();
   const page = useSelector((state) => state.loadingMovies.page);
 
-  const { data = [], isLoading } = useGetMoviesAllQuery(page);
+  const { data = [], isLoading, isError } = useGetMoviesAllQuery(page);
+
+  if (isError) {
+    navigate('*');
+  }
 
   const infoButtonClick = (id) => {
     dispatch(setMoviesID(id));
@@ -20,6 +24,7 @@ const MovieCard = () => {
   return (
     <>
       <Grid
+        columns={{ xs: 4, sm: 8, md: 12 }}
         container
         spacing={2}>
         {!isLoading

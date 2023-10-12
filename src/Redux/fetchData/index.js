@@ -23,8 +23,12 @@ export const fetchData = createApi({
       query: (id) => `/v1.3/movie/${id}`,
       providesTags: ['movies'],
     }),
+    getSearchMovie: build.query({
+      query: (search) => `v1.2/movie/search?page=1&limit=10&query=${search}`,
+      providesTags: ['movies'],
+    }),
   }),
 
 });
 
-export const { useGetMoviesAllQuery, useGetMoviesIdQuery } = fetchData;
+export const { useGetMoviesAllQuery, useGetMoviesIdQuery, useLazyGetSearchMovieQuery } = fetchData;

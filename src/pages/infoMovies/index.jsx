@@ -1,35 +1,37 @@
-// import React from 'react'
-
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import S from './infoMovies.module.scss';
 import { useSelector } from 'react-redux';
 import { useGetMoviesIdQuery } from '../../Redux/fetchData';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Button,
-  Rating,
-  Typography,
-} from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Box, Button, CircularProgress, Grid, Rating, Typography } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
 const InfoBlock = () => {
+  const navigate = useNavigate();
   const movieId = useSelector((state) => state.loadingMovies.selectedMovieId);
 
-  const { data = [], isLoading } = useGetMoviesIdQuery(movieId);
-  console.log(isLoading);
-  console.log(data);
+  const { data = [], isLoading, isError } = useGetMoviesIdQuery(movieId);
 
+  if (isError) {
+    navigate('*');
+  }
   return (
     <>
       {isLoading ? (
-        <useGetMoviesIdQuery color="success" />
+        <Box
+          sx={{
+            width: '100%',
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <CircularProgress color="success" />
+        </Box>
       ) : (
         <Box>
           <Box sx={{ display: 'flex' }}>
-            <Box sx={{ width: '40%' }}>
+            <Box>
               <img
+                className={S.image}
                 src={data.poster.previewUrl}
                 alt="preview"
               />
@@ -55,7 +57,7 @@ const InfoBlock = () => {
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '200px', marginY: 5 }}>
                 <Link
-                  to={data.videos.trailers[0].url}
+                  to={data.videos.trailers[0]?.url}
                   target="_blank">
                   <Button
                     sx={{ marginBottom: 2, width: '200px' }}
@@ -63,36 +65,30 @@ const InfoBlock = () => {
                     Смотреть трейлер
                   </Button>
                 </Link>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-                  {data.watchability.items.map((button, i) => (
+              </Box>
+              <Grid
+                container
+                spacing={2}
+                sx={{ width: '100%' }}>
+                {data.watchability.items.map((button, i) => (
+                  <Grid
+                    item
+                    key={i}
+                    sx={2}>
                     <Link
-                      key={i}
                       sx={{ width: '200px' }}
                       to={button.url}
                       target="_blank">
                       <Button variant="contained">Смотреть фильм на {button.name}</Button>
                     </Link>
-                  ))}
-                </Box>
-              </Box>
+                  </Grid>
+                ))}
+              </Grid>
             </Box>
           </Box>
-          <Box>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header">
-                <Typography>Accordion 1</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-                  lacus ex, sit amet blandit leo lobortis eget.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </Box>
+          <Link to="/">
+            <Button>На главную</Button>
+          </Link>
         </Box>
       )}
     </>

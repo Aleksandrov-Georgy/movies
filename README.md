@@ -12,3 +12,5 @@ Technologies used:
 the number of requests to the server is limited.
 
 to run use the standard command: npm run dev
+
+...search block under development

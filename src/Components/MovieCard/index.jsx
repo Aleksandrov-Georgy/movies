@@ -24,6 +24,7 @@ const MovieCard = () => {
   return (
     <>
       <Grid
+        sx={{ marginTop: 2 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
         container
         spacing={2}>

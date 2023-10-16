@@ -4,23 +4,24 @@ import { useLazyGetSearchMovieQuery } from '../../Redux/fetchData';
 import debounce from 'lodash.debounce';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, TextField } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { setDataMovies } from '../../Redux/searchData';
 
 const Search = () => {
   const [search, setSearch] = React.useState('');
+  const dispatch = useDispatch();
 
   const [fetchDataMovies, { data: Movie }, isError] = useLazyGetSearchMovieQuery();
+  if (Movie) {
+    dispatch(setDataMovies(Movie));
+  }
 
-  console.log('Movie', Movie);
   const getMoviesDebounce = React.useCallback(
     debounce((e) => {
       fetchDataMovies(e);
     }, 500),
     [],
   );
-
-  const onClickClear = () => {
-    setSearch('');
-  };
 
   const onChangeInput = (e) => {
     setSearch(e);
@@ -30,7 +31,6 @@ const Search = () => {
   return (
     <Box sx={{ width: '100%', color: 'indigo50', display: 'flex', alignItems: 'center' }}>
       <TextField
-        sx={{ background: 'transparent', borderRadius: '5px', color: 'white' }}
         label={isError ? 'поиск фильмов и сериалов' : 'Произошла ошибка, попробуйте еще раз!'}
         variant="standard"
         autoComplete="off"
@@ -38,7 +38,7 @@ const Search = () => {
         value={search}
         onChange={(e) => onChangeInput(e.target.value)}
       />
-      {search && <CloseIcon onClick={onClickClear} />}
+      {search && <CloseIcon onClick={() => setSearch('')} />}
     </Box>
   );
 };

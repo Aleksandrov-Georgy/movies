@@ -9,6 +9,7 @@ const MovieCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const page = useSelector((state) => state.loadingMovies.page);
+  // const moviesFilter = useSelector((state) => state.searchMovies.searchVariants);
 
   const { data = [], isLoading, isError } = useGetMoviesAllQuery(page);
 
@@ -28,72 +29,72 @@ const MovieCard = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         container
         spacing={2}>
-        {!isLoading
-          ? data.docs?.map((movie) => (
+        {isLoading &&
+          Array(20)
+            .fill()
+            .map(() => (
               <Grid
                 item
-                key={movie.id}
-                xs={3}>
-                <Paper
-                  elevation={16}
-                  sx={{ borderRadius: '10px' }}
-                  key={movie.id}
-                  className={S.movie}>
-                  <div className={S.imageBlock}>
-                    <img
-                      src={movie.poster.previewUrl}
-                      alt="preview"
-                    />
-                  </div>
-                  <Box
-                    padding={1}
-                    sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-                    <Typography
-                      variant="h6"
-                      component="h6">
-                      {movie.name}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      component="h6">
-                      Рейтинг
-                    </Typography>
-                    <Rating
-                      readOnly
-                      max={10}
-                      precision={0.1}
-                      defaultValue={movie.rating.imdb}
-                    />
-                    <Typography
-                      variant="caption"
-                      component="h6">
-                      {movie.rating.imdb}
-                    </Typography>
-                  </Box>
-                  <Button
-                    onClick={() => infoButtonClick(movie.id)}
-                    variant="outlined">
-                    Информация о фильме
-                  </Button>
-                </Paper>
+                xs={3}
+                sx={{ marginBottom: '20px' }}
+                key={Math.random()}>
+                <Skeleton
+                  key={Math.random()}
+                  variant="rounded"
+                  height={450}
+                  width={270}
+                />
               </Grid>
-            ))
-          : Array(20)
-              .fill()
-              .map(() => (
-                <Grid
-                  item
-                  xs={3}
-                  sx={{ marginBottom: '20px' }}
-                  key={Math.random()}>
-                  <Skeleton
-                    key={Math.random()}
-                    variant="rounded"
-                    height={450}
-                    width={270}
-                  />
-                </Grid>
-              ))}
+            ))}
+        {data.docs?.map((movie) => (
+          <Grid
+            item
+            key={movie.id}
+            xs={3}>
+            <Paper
+              elevation={16}
+              sx={{ borderRadius: '10px' }}
+              key={movie.id}
+              className={S.movie}>
+              <div className={S.imageBlock}>
+                <img
+                  src={movie.poster.previewUrl}
+                  alt="preview"
+                />
+              </div>
+              <Box
+                padding={1}
+                sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                <Typography
+                  variant="h6"
+                  component="h6">
+                  {movie.name}
+                </Typography>
+                <Typography
+                  variant="caption"
+                  component="h6">
+                  Рейтинг
+                </Typography>
+                <Rating
+                  readOnly
+                  max={10}
+                  precision={0.1}
+                  defaultValue={movie.rating.imdb}
+                />
+                <Typography
+                  variant="caption"
+                  component="h6">
+                  {movie.rating.imdb}
+                </Typography>
+              </Box>
+              <Button
+                onClick={() => infoButtonClick(movie.id)}
+                variant="outlined">
+                Информация о фильме
+              </Button>
+            </Paper>
+          </Grid>
+        ))}
       </Grid>
     </>
   );

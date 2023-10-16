@@ -28,7 +28,7 @@ const InfoBlock = () => {
         </Box>
       ) : (
         <Box>
-          <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: 'flex', marginTop: 3 }}>
             <Box>
               <img
                 className={S.image}

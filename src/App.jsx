@@ -4,6 +4,7 @@ import Home from './pages/home/home';
 import InfoBlock from './pages/infoMovies';
 import Error from './pages/error';
 import Search from './Components/SearchBlock';
+import SearchBlock from './pages/search';
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
         <Route
           path="/"
           element={<Home />}
+        />
+        <Route
+          path="/search"
+          element={<SearchBlock />}
         />
         <Route
           exact

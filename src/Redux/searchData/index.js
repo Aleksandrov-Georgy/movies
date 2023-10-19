@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  defaultValue: '',
   searchVariants: [],
 };
 
@@ -11,9 +12,12 @@ export const searchMovies = createSlice({
     setDataMovies: (state, action) => {
       state.searchVariants = action.payload;
     },
+    setDefaultValue: (state) => {
+      state.defaultValue = '';
+    },
   },
 });
 
-export const { setDataMovies } = searchMovies.actions;
+export const { setDataMovies, setDefaultValue } = searchMovies.actions;
 
 export default searchMovies.reducer;

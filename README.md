@@ -13,4 +13,4 @@ the number of requests to the server is limited.
 
 to run use the standard command: npm run dev
 
-adaptive in development :)
+

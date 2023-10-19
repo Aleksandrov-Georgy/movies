@@ -1,52 +1,39 @@
-import S from './movie.module.scss';
-import { Box, Button, Grid, Paper, Rating, Skeleton, Typography } from '@mui/material';
+import { Box, Button, Grid, Paper, Rating, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import S from '../../Components/MovieCard/movie.module.scss';
 import { setMoviesID } from '../../Redux/fetchDataSlice';
-import { useGetMoviesAllQuery } from '../../Redux/fetchData';
+import { useNavigate } from 'react-router-dom';
 
-const MovieCard = () => {
-  const dispatch = useDispatch();
+const SearchBlock = () => {
   const navigate = useNavigate();
-  const page = useSelector((state) => state.loadingMovies.page);
-  
+  const dispatch = useDispatch();
 
-  const { data = [], isLoading, isError } = useGetMoviesAllQuery(page);
-
-  if (isError) {
-    navigate('*');
-  }
+  const searchMovies = useSelector((state) => state.searchMovies.searchVariants);
 
   const infoButtonClick = (id) => {
     dispatch(setMoviesID(id));
     navigate(`/movie/${id}`);
   };
 
+  const buttonMainPage = () => {
+    
+    navigate('/');
+  };
+
   return (
     <>
+      <Button
+        onClick={buttonMainPage}
+        variant="outlined"
+        sx={{ position: 'absolute', left: 5 }}>
+        Вернуться на главную
+      </Button>
       <Grid
         sx={{ marginTop: 2 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
         container
         spacing={2}>
-        {isLoading &&
-          Array(20)
-            .fill()
-            .map(() => (
-              <Grid
-                item
-                xs={3}
-                sx={{ marginBottom: '20px' }}
-                key={Math.random()}>
-                <Skeleton
-                  key={Math.random()}
-                  variant="rounded"
-                  height={450}
-                  width={270}
-                />
-              </Grid>
-            ))}
-        {data.docs?.map((movie) => (
+        {searchMovies.docs?.map((movie) => (
           <Grid
             item
             key={movie.id}
@@ -58,7 +45,11 @@ const MovieCard = () => {
               className={S.movie}>
               <div className={S.imageBlock}>
                 <img
-                  src={movie.poster.previewUrl}
+                  src={
+                    movie.poster
+                      ? movie.poster
+                      : 'https://flyclipart.com/thumb2/clipart-sad-face-clipart-school-clipart-sad-face-clipart-sad-785595.png'
+                  }
                   alt="preview"
                 />
               </div>
@@ -79,12 +70,12 @@ const MovieCard = () => {
                   readOnly
                   max={10}
                   precision={0.1}
-                  defaultValue={movie.rating.imdb}
+                  defaultValue={movie.rating}
                 />
                 <Typography
                   variant="caption"
                   component="h6">
-                  {movie.rating.imdb}
+                  {movie.rating.toFixed(1)}
                 </Typography>
               </Box>
               <Button
@@ -100,4 +91,4 @@ const MovieCard = () => {
   );
 };
 
-export default MovieCard;
+export default SearchBlock;

@@ -17,12 +17,13 @@ const Home = () => {
       behavior: 'smooth',
     });
   };
-  
+
   return (
     <>
       <MovieCard />
       <div className={S.pagination}>
         <Pagination
+          sx={{ marginTop: 1 }}
           page={page}
           onChange={handleChange}
           color="secondary"

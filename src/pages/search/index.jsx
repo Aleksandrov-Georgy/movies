@@ -16,9 +16,12 @@ const SearchBlock = () => {
   };
 
   const buttonMainPage = () => {
-    
     navigate('/');
   };
+
+  if (searchMovies.docs.length === 0) {
+    navigate('/error');
+  }
 
   return (
     <>

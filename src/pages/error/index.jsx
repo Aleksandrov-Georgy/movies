@@ -17,6 +17,12 @@ const Error = () => {
           sx={{ textAlign: 'center' }}>
           Что-то пошло не так.
         </Typography>
+        <Typography
+          variant="h3"
+          component="h3"
+          sx={{ textAlign: 'center' }}>
+          Попробуйте ввести запрос повторно.
+        </Typography>
         <Link to="/">
           <Button
             variant="outlined"

@@ -31,7 +31,7 @@ const InfoBlock = () => {
           <Box sx={{ display: 'flex', marginTop: 3 }}>
             <Box>
               <img
-                className={S.image}
+                className={S.img}
                 src={data.poster.previewUrl}
                 alt="preview"
               />

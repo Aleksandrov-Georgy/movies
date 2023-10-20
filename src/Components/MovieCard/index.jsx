@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setMoviesID } from '../../Redux/fetchDataSlice';
 import { useGetMoviesAllQuery } from '../../Redux/fetchData';
+import InfoIcon from '@mui/icons-material/Info';
 
 const MovieCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const page = useSelector((state) => state.loadingMovies.page);
-  
 
   const { data = [], isLoading, isError } = useGetMoviesAllQuery(page);
 
@@ -89,7 +89,8 @@ const MovieCard = () => {
               </Box>
               <Button
                 onClick={() => infoButtonClick(movie.id)}
-                variant="outlined">
+                variant="outlined"
+                startIcon={<InfoIcon />}>
                 Информация о фильме
               </Button>
             </Paper>

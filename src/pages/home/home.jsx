@@ -27,7 +27,7 @@ const Home = () => {
           page={page}
           onChange={handleChange}
           color="secondary"
-          count={1038604}
+          count={65082}
         />
       </div>
     </>

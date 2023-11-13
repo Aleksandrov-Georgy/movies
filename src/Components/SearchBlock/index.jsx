@@ -14,7 +14,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [fetchDataMovies, { data: Movie }, isError] = useLazyGetSearchMovieQuery();
+  const [fetchDataMovies, { data: Movie }, isError] = useLazyGetSearchMovieQuery(search);
 
   if (Movie) {
     dispatch(setDataMovies(Movie));

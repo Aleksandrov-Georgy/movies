@@ -12,6 +12,7 @@ const Home = () => {
   const handleChange = (event, value) => {
     dispatch(setPageFetch(value));
     setPage(value);
+
     window.scrollTo({
       top: 0,
       behavior: 'smooth',

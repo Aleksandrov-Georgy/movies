@@ -16,7 +16,7 @@ export const fetchData = createApi({
 
   endpoints: (build) => ({
     getMoviesAll: build.query({
-      query: (page) => `/v1.3/movie?limit=17&page=${page}`,
+      query: (page) => `/v1.3/movie?limit=16&page=${page}`,
       providesTags: ['movies'],
     }),
     getMoviesId: build.query({

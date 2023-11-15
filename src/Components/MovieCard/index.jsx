@@ -1,5 +1,4 @@
 // import React from 'react';
-import { useGetMoviesAllQuery } from '../../Redux/fetchData';
 // import { useInView } from 'react-intersection-observer';
 import S from './movie.module.scss';
 import { Box, Button, Grid, Paper, Rating, Skeleton, Typography } from '@mui/material';
@@ -9,16 +8,12 @@ import { setMoviesID } from '../../Redux/fetchDataSlice';
 import InfoIcon from '@mui/icons-material/Info';
 
 const MovieCard = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const page = useSelector((state) => state.loadingMovies.page);
+  const loading = useSelector((state) => state.loadingMovies.loadingMovie);
 
-  const { data = [], isLoading: loader, isError } = useGetMoviesAllQuery(page);
-
-  if (isError) {
-    navigate('*');
-  }
+  const moviesList = useSelector((state) => state.loadingMovies.moviesNewList);
 
   const infoButtonClick = (id) => {
     dispatch(setMoviesID(id));
@@ -32,8 +27,8 @@ const MovieCard = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         container
         spacing={2}>
-        {!loader
-          ? data.docs?.map((movie) => (
+        {loading === 'fulfilled'
+          ? moviesList.data?.docs?.map((movie) => (
               <Grid
                 item
                 key={movie.id}

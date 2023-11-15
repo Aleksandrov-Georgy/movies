@@ -27,12 +27,7 @@ export const fetchData = createApi({
       query: (search) => `v1.2/movie/search?page=1&limit=10&query=${search}`,
       providesTags: ['movies'],
     }),
-    getMoviesScroll: build.query({
-      query: (page) => `/v1.3/movie?limit=12&page=${page}`,
-      providesTags: ['movies'],
-    }),
   }),
-
 });
 
-export const { useGetMoviesAllQuery, useGetMoviesIdQuery, useLazyGetSearchMovieQuery, useLazyGetMoviesScrollQuery } = fetchData;
+export const { useGetMoviesAllQuery, useGetMoviesIdQuery, useLazyGetSearchMovieQuery, useLazyGetMoviesAllQuery } = fetchData;

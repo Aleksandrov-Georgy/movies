@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  loadingMovie: false,
+  loadingMovie: 'pending',
   page: 1,
   selectedMovieId: '',
+  moviesNewList: [],
 };
+
+
 
 export const loadingMovies = createSlice({
   name: 'loadingMovies',
@@ -19,9 +22,14 @@ export const loadingMovies = createSlice({
     setMoviesID: (state, action) => {
       state.selectedMovieId = action.payload;
     },
+    setMoviesNewList: (state, action) => {
+      state.loadingMovie = action.payload.status;
+      state.moviesNewList = action.payload;
+    },
   },
 });
 
-export const { setLoading, setPageFetch, setMoviesID } = loadingMovies.actions;
+export const { setLoading, setPageFetch, setMoviesID, setMoviesNewList } =
+  loadingMovies.actions;
 
 export default loadingMovies.reducer;

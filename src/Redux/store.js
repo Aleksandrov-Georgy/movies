@@ -8,6 +8,7 @@ export const store = configureStore({
     [fetchData.reducerPath]: fetchData.reducer,
     loadingMovies: loadingMovies,
     searchMovies: searchMovies,
+    
   },
   middleware: (getDefault) => getDefault().concat(fetchData.middleware),
 });

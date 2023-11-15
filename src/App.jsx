@@ -9,7 +9,7 @@ import S from '../src/App.module.scss';
 
 function App() {
   return (
-    <Container sx={{ marginTop: 2 }}>
+    <Container className={S} sx={{ marginTop: 2 }}>
       <Search />
       <Routes>
         <Route

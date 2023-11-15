@@ -13,6 +13,7 @@ const InfoBlock = () => {
   if (isError) {
     navigate('*');
   }
+  
   return (
     <>
       {isLoading ? (

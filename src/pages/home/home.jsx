@@ -5,16 +5,18 @@ import { setMoviesNewList } from '../../Redux/fetchDataSlice';
 import MovieCard from '../../Components/MovieCard';
 import { Pagination } from '@mui/material';
 import { useLazyGetMoviesAllQuery } from '../../Redux/fetchData';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [page, setPage] = React.useState(1);
 
+  const [getNewDataMovies, data] = useLazyGetMoviesAllQuery(page);
+
   React.useEffect(() => {
-    getNewDataMovies(page);
+    getNewDataMovies();
   }, []);
 
   React.useEffect(() => {
@@ -25,15 +27,13 @@ const Home = () => {
     getNewDataMovies(page);
   }, [page]);
 
-  const [getNewDataMovies, data] = useLazyGetMoviesAllQuery(page);
-
   if (data) {
     dispatch(setMoviesNewList(data));
   }
 
-  if (data.isError) {
-    navigate('*');
-  }
+  // if (data.isError) {
+  //   navigate('*');
+  // }
 
   const handleChange = (event, value) => {
     setPage(value);

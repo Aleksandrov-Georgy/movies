@@ -28,7 +28,9 @@ const Home = () => {
   }, [page]);
 
   if (data) {
-    dispatch(setMoviesNewList(data));
+    setTimeout(() => {
+      dispatch(setMoviesNewList(data));
+    }, 10);
   }
 
   // if (data.isError) {

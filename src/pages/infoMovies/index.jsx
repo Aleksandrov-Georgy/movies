@@ -75,7 +75,7 @@ const InfoBlock = () => {
                   <Grid
                     item
                     key={i}
-                    sx={2}>
+                    >
                     <Link
                       sx={{ width: '200px' }}
                       to={button.url}

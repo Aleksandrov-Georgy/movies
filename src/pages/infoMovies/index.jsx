@@ -13,6 +13,7 @@ const InfoBlock = () => {
   if (isError) {
     navigate('*');
   }
+  
   return (
     <>
       {isLoading ? (
@@ -31,7 +32,7 @@ const InfoBlock = () => {
           <Box sx={{ display: 'flex', marginTop: 3 }}>
             <Box>
               <img
-                className={S.image}
+                className={S.img}
                 src={data.poster.previewUrl}
                 alt="preview"
               />
@@ -74,7 +75,7 @@ const InfoBlock = () => {
                   <Grid
                     item
                     key={i}
-                    sx={2}>
+                    >
                     <Link
                       sx={{ width: '200px' }}
                       to={button.url}

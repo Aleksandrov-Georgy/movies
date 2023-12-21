@@ -5,19 +5,19 @@ import debounce from 'lodash.debounce';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { setDataMovies } from '../../Redux/searchData';
 import { useNavigate } from 'react-router-dom';
+import { setSearchMovies } from '../../Redux/fetchDataSlice';
 
 const Search = () => {
-  const [search, setSearch] = React.useState('');
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [fetchDataMovies, { data: Movie }, isError] = useLazyGetSearchMovieQuery();
+  const [search, setSearch] = React.useState('');
+
+  const [fetchDataMovies, { data: Movie }, isError] = useLazyGetSearchMovieQuery(search);
 
   if (Movie) {
-    dispatch(setDataMovies(Movie));
+    dispatch(setSearchMovies(Movie));
   }
 
   const getMoviesDebounce = React.useCallback(
@@ -28,9 +28,18 @@ const Search = () => {
     [],
   );
 
+
   const onChangeInput = (e) => {
     setSearch(e);
     getMoviesDebounce(e);
+  };
+
+  const onClickClose = () => {
+    setSearch('');
+    dispatch(setSearchMovies([]));
+
+    
+    navigate('/');
   };
 
   return (
@@ -43,7 +52,7 @@ const Search = () => {
         value={search}
         onChange={(e) => onChangeInput(e.target.value)}
       />
-      {search && <CloseIcon onClick={() => setSearch('')} />}
+      {search && <CloseIcon onClick={onClickClose} />}
     </Box>
   );
 };

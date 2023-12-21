@@ -5,10 +5,11 @@ import InfoBlock from './pages/infoMovies';
 import Error from './pages/error';
 import Search from './Components/SearchBlock';
 import SearchBlock from './pages/search';
+import S from '../src/App.module.scss';
 
 function App() {
   return (
-    <Container sx={{ marginTop: 2 }}>
+    <Container className={S} sx={{ marginTop: 2 }}>
       <Search />
       <Routes>
         <Route

@@ -13,10 +13,10 @@ const Home = () => {
   // const navigate = useNavigate();
   const [page, setPage] = React.useState(1);
 
-  const [getNewDataMovies, data] = useLazyGetMoviesAllQuery(page);
+  const [getNewDataMovies, data] = useLazyGetMoviesAllQuery();
 
   React.useEffect(() => {
-    getNewDataMovies();
+    getNewDataMovies(page);
   }, []);
 
   React.useEffect(() => {

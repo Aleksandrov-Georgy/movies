@@ -11,9 +11,9 @@ const InfoBlock = () => {
   const { data = [], isLoading, isError } = useGetMoviesIdQuery(movieId);
 
   if (isError) {
-    navigate('*');
+    navigate('/');
   }
-  
+
   return (
     <>
       {isLoading ? (
@@ -74,8 +74,7 @@ const InfoBlock = () => {
                 {data.watchability.items.map((button, i) => (
                   <Grid
                     item
-                    key={i}
-                    >
+                    key={i}>
                     <Link
                       sx={{ width: '200px' }}
                       to={button.url}
@@ -87,9 +86,7 @@ const InfoBlock = () => {
               </Grid>
             </Box>
           </Box>
-          <Link to="/">
-            <Button>На главную</Button>
-          </Link>
+          <Button onClick={() => navigate(-1)}>Назад</Button>
         </Box>
       )}
     </>

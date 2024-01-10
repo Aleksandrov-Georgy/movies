@@ -28,7 +28,6 @@ const Search = () => {
     [],
   );
 
-
   const onChangeInput = (e) => {
     setSearch(e);
     getMoviesDebounce(e);
@@ -38,7 +37,6 @@ const Search = () => {
     setSearch('');
     dispatch(setSearchMovies([]));
 
-    
     navigate('/');
   };
 

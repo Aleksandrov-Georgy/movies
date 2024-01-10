@@ -32,6 +32,7 @@ const MovieCard = () => {
               <Grid
                 item
                 key={movie.id}
+                onClick={() => infoButtonClick(movie.id)}
                 xs={3}>
                 <Paper
                   elevation={16}

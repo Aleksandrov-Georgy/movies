@@ -1,5 +1,3 @@
-// import React from 'react';
-// import { useInView } from 'react-intersection-observer';
 import S from './movie.module.scss';
 import { Box, Button, Grid, Paper, Rating, Skeleton, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';

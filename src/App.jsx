@@ -9,13 +9,19 @@ import S from '../src/App.module.scss';
 
 function App() {
   return (
-    <Container className={S} sx={{ marginTop: 2 }}>
+    <Container
+      className={S}
+      sx={{ marginTop: 2 }}>
       <Search />
       <Routes>
         <Route
           path="/"
-          element={<Home />}
-        />
+          element={<Home />}>
+          <Route
+            path=":page"
+            element={<Home />}
+          />
+        </Route>
         <Route
           path="/search"
           element={<SearchBlock />}

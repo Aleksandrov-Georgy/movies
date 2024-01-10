@@ -1,21 +1,24 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import S from './home.module.scss';
 import { useDispatch } from 'react-redux';
 import { setMoviesNewList } from '../../Redux/fetchDataSlice';
 import MovieCard from '../../Components/MovieCard';
 import { Pagination } from '@mui/material';
 import { useLazyGetMoviesAllQuery } from '../../Redux/fetchData';
-// import { useNavigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const [params, setParams] = useSearchParams();
+  const page = params.get('page');
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const [page, setPage] = React.useState(1);
 
   const [getNewDataMovies, data] = useLazyGetMoviesAllQuery();
 
   React.useEffect(() => {
+    !setParams && setParams({ page: '1' });
     getNewDataMovies(page);
   }, []);
 
@@ -25,7 +28,7 @@ const Home = () => {
       behavior: 'smooth',
     });
     getNewDataMovies(page);
-  }, [page]);
+  }, [getNewDataMovies, page, params]);
 
   if (data) {
     setTimeout(() => {
@@ -33,12 +36,12 @@ const Home = () => {
     }, 10);
   }
 
-  // if (data.isError) {
-  //   navigate('*');
-  // }
+  if (data.isError) {
+    navigate('*');
+  }
 
   const handleChange = (event, value) => {
-    setPage(value);
+    setParams({ page: value.toString() });
   };
 
   return (
@@ -47,10 +50,10 @@ const Home = () => {
       <div className={S.pagination}>
         <Pagination
           sx={{ marginTop: 1 }}
-          page={page}
+          page={Number(page)}
           onChange={handleChange}
           color="secondary"
-          count={65082}
+          count={data.data?.pages}
         />
       </div>
     </>

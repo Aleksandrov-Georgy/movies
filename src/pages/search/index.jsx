@@ -76,7 +76,7 @@ const SearchBlock = () => {
                 </Paper>
               </Grid>
             ))
-          : Array(16)
+          : Array(32)
               .fill()
               .map(() => (
                 <Grid

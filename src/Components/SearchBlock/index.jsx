@@ -1,9 +1,8 @@
 import React from 'react';
 import { useLazyGetSearchMovieQuery } from '../../Redux/fetchData';
-
+import S from './search.module.scss';
 import debounce from 'lodash.debounce';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSearchMovies } from '../../Redux/fetchDataSlice';
@@ -41,17 +40,17 @@ const Search = () => {
   };
 
   return (
-    <Box sx={{ width: '100%', color: 'indigo50', display: 'flex', alignItems: 'center' }}>
-      <TextField
-        label={isError ? 'поиск фильмов и сериалов' : 'Произошла ошибка, попробуйте еще раз!'}
-        variant="standard"
-        autoComplete="off"
-        fullWidth
+    <div className={S.input}>
+      <input
+        title="поиск фильмов и сериалов"
+        placeholder={isError ? 'поиск фильмов и сериалов' : 'Произошла ошибка, попробуйте еще раз!'}
+        // className={S.input}
+        type="text"
         value={search}
         onChange={(e) => onChangeInput(e.target.value)}
       />
-      {search && <CloseIcon onClick={onClickClose} />}
-    </Box>
+      {search && <CloseIcon className={S.input_svg} onClick={onClickClose} />}
+    </div>
   );
 };
 

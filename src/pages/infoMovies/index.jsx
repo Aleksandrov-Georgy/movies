@@ -1,7 +1,7 @@
 import S from './infoMovies.module.scss';
 import { useSelector } from 'react-redux';
 import { useGetMoviesIdQuery } from '../../Redux/fetchData';
-import { Box, Button, CircularProgress, Grid, Rating, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Grid, Rating } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 
 const InfoBlock = () => {
@@ -29,7 +29,7 @@ const InfoBlock = () => {
         </Box>
       ) : (
         <Box>
-          <Box sx={{ display: 'flex', marginTop: 3 }}>
+          <div className={S.box}>
             <Box>
               <img
                 className={S.img}
@@ -37,25 +37,19 @@ const InfoBlock = () => {
                 alt="preview"
               />
             </Box>
-            <Box sx={{ marginLeft: 4 }}>
-              <Typography
-                sx={{ marginBottom: 1 }}
-                variant="h3"
-                component="h3">
-                {data.name}
-              </Typography>
-              <Rating
-                sx={{ marginBottom: 2 }}
-                readOnly
-                max={10}
-                precision={0.1}
-                defaultValue={data?.rating.imdb}
-              />
-              <Typography
-                variant="body1"
-                component="p">
-                {data.description}
-              </Typography>
+            <div className={S.box__info}>
+              <div className={S.box__content}>
+                <h1 className={S.box__title}>{data.name}</h1>
+                <Rating
+                  sx={{ marginBottom: 2 }}
+                  readOnly
+                  max={10}
+                  precision={0.1}
+                  defaultValue={data?.rating.imdb}
+                />
+              </div>
+
+              <p className={S.box__desc}>{data.description}</p>
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '200px', marginY: 5 }}>
                 <Link
                   to={data.videos.trailers[0]?.url}
@@ -84,9 +78,13 @@ const InfoBlock = () => {
                   </Grid>
                 ))}
               </Grid>
-            </Box>
-          </Box>
-          <Button onClick={() => navigate(-1)}>Назад</Button>
+            </div>
+          </div>
+          <Button
+            sx={{ margin: 2 }}
+            onClick={() => navigate(-1)}>
+            Назад
+          </Button>
         </Box>
       )}
     </>

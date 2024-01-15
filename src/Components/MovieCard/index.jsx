@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setMoviesID } from '../../Redux/fetchDataSlice';
 import InfoIcon from '@mui/icons-material/Info';
+import React from 'react';
 
 const MovieCard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [imgLoad, setImgLoad] = React.useState(false);
 
   const loading = useSelector((state) => state.loadingMovies.loadingMovie);
 
@@ -20,11 +22,7 @@ const MovieCard = () => {
 
   return (
     <>
-      <Grid
-        sx={{ marginTop: 2 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-        container
-        spacing={2}>
+      <div className={S.movies}>
         {loading === 'fulfilled'
           ? moviesList.data?.docs?.map((movie) => (
               <Grid
@@ -33,12 +31,14 @@ const MovieCard = () => {
                 onClick={() => infoButtonClick(movie.id)}
                 xs={3}>
                 <Paper
+                
                   elevation={16}
                   sx={{ borderRadius: '10px' }}
                   key={movie.id}
                   className={S.movie}>
-                  <div className={S.imageBlock}>
+                  <div className={imgLoad ? `${S.imageBlock}` : `${S.imageBlock__loader}`}>
                     <img
+                      onLoad={() => setImgLoad(true)}
                       src={movie.poster.previewUrl}
                       alt="preview"
                     />
@@ -77,7 +77,7 @@ const MovieCard = () => {
                 </Paper>
               </Grid>
             ))
-          : Array(16)
+          : Array(32)
               .fill()
               .map(() => (
                 <Grid
@@ -93,7 +93,7 @@ const MovieCard = () => {
                   />
                 </Grid>
               ))}
-      </Grid>
+      </div>
     </>
   );
 };

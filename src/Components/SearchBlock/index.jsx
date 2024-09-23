@@ -35,7 +35,6 @@ const Search = () => {
   const onClickClose = () => {
     setSearch('');
     dispatch(setSearchMovies([]));
-
     navigate('/');
   };
 

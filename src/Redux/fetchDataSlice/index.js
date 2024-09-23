@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  loadingMovie: 'pending',
+  loadingMovie: '',
   page: 1,
   selectedMovieId: '',
   moviesNewList: [],

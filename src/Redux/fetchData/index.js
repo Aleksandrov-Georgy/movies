@@ -16,23 +16,18 @@ export const fetchData = createApi({
 
   endpoints: (build) => ({
     getMoviesAll: build.query({
-      query: (page) => `/v1.3/movie?limit=32&page=${page}`,
+      query: (page) => `/v1.4/movie?limit=32&page=${page}`,
       providesTags: ['movies'],
     }),
     getMoviesId: build.query({
-      query: (id) => `/v1.3/movie/${id}`,
+      query: (id) => `/v1.4/movie/${id}`,
       providesTags: ['movies'],
     }),
     getSearchMovie: build.query({
-      query: (search) => `v1.2/movie/search?page=1&limit=32&query=${search}`,
+      query: (search) => `v1.4/movie/search?page=1&limit=32&query=${search}`,
       providesTags: ['movies'],
     }),
   }),
 });
 
-export const {
-  useGetMoviesAllQuery,
-  useGetMoviesIdQuery,
-  useLazyGetSearchMovieQuery,
-  useLazyGetMoviesAllQuery,
-} = fetchData;
+export const { useGetMoviesAllQuery, useGetMoviesIdQuery, useLazyGetSearchMovieQuery, useLazyGetMoviesAllQuery } = fetchData;

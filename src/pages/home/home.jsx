@@ -20,7 +20,7 @@ const Home = () => {
   React.useEffect(() => {
     !setParams && setParams({ page: '1' });
     getNewDataMovies(page);
-  }, []);
+  }, [getNewDataMovies, page, setParams]);
 
   React.useEffect(() => {
     window.scrollTo({
